@@ -30,7 +30,26 @@ public class RootService {
                 () -> new DataNotFoundException("root not found!")
         );
         ResultResponse response = new ResultResponse();
-        if(root.getEng().equalsIgnoreCase(request.getAnswer())){
+        writeResponse(response, request, root);
+        return response;
+    }
+
+    public ResultResponse checkRoots(List<CheckRootDTO> answers) {
+        ResultResponse response = new ResultResponse();
+        answers.forEach(
+                (i) -> {
+
+                    RootEntity root = rootRepository.findById(i.getRootId()).orElseThrow(
+                            () -> new DataNotFoundException("root not found!")
+                    );
+                    writeResponse(response, i, root);
+                }
+        );
+        return response;
+    }
+
+    private void writeResponse(ResultResponse response, CheckRootDTO i, RootEntity root) {
+        if(root.getEng().equalsIgnoreCase(i.getAnswer())){
             response.setPoint(1);
 
         }else {
@@ -38,19 +57,21 @@ public class RootService {
             correct.add(root.getEng());
             response.setCorrectAnswers(correct);
             List<String> wrong = new ArrayList<>();
-            wrong.add(request.getAnswer());
+            wrong.add(i.getAnswer());
             response.setWrongAnswers(wrong);
             response.setPoint(0);
         }
-        return response;
     }
-
-//    public List<ResultResponse> checkRoots(List<AnswerDTO> answers) {
-//        return null;
-//    }
 
     public List<RootResponse> getTestByDate(LocalDate date) {
         List<RootEntity> list = rootRepository.findRootEntitiesByCreatedDate(date);
+        List<RootResponse> responses = new ArrayList<>();
+        list.forEach((i) -> {responses.add(modelMapper.map(i, RootResponse.class));});
+        return responses;
+    }
+
+    public List<RootResponse> getTest(Integer number) {
+        List<RootEntity> list = rootRepository.findRandomRoots(number);
         List<RootResponse> responses = new ArrayList<>();
         list.forEach((i) -> {responses.add(modelMapper.map(i, RootResponse.class));});
         return responses;
