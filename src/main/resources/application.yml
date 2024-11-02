@@ -14,6 +14,19 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: 587  # TLS uchun to'g'ri port
+    username: nodirbekomonboyev2311@gmail.com
+    password: idlefasmppfddmos
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com  # SSL uchun ishonchli sertifikatni belgilash
 
 jwt:
   expiry: 604800000
