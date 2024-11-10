@@ -1,17 +1,18 @@
 package com.nodirverse.dictionary.dto.request;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Service
-public class AnswerDTO {
-    private List<UUID> roots;
-    private List<String> answers;
+@Setter
+public class MailMessageDTO {
+    private String receiver;
+    private String subject;
+    private String message;
+
 }
