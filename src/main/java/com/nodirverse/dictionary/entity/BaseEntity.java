@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -17,9 +17,9 @@ public abstract class BaseEntity {
     protected UUID id;
 
     @CreationTimestamp
-    protected LocalDateTime createdDate;
+    protected LocalDate createdDate;
 
     @UpdateTimestamp
-    protected LocalDateTime updatedDate;
+    protected LocalDate updatedDate;
 
 }
