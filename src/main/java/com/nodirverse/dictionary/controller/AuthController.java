@@ -2,6 +2,7 @@ package com.nodirverse.dictionary.controller;
 
 
 import com.nodirverse.dictionary.dto.request.AuthDTO;
+import com.nodirverse.dictionary.dto.request.TokenRefreshDTO;
 import com.nodirverse.dictionary.dto.response.JwtResponse;
 import com.nodirverse.dictionary.service.UserService;
 import jakarta.validation.Valid;
@@ -25,5 +26,10 @@ public class AuthController {
     @PostMapping("/sign-up")
     public ResponseEntity<JwtResponse> signUp(@Valid @RequestBody AuthDTO request){
         return ResponseEntity.ok(userService.signUp(request));
+    }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<JwtResponse> refreshToken(@Valid @RequestBody TokenRefreshDTO request){
+        return ResponseEntity.ok(userService.tokenRefresh(request));
     }
 }
