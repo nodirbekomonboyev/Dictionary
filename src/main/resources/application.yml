@@ -18,7 +18,7 @@ spring:
     host: smtp.gmail.com
     port: 587  # TLS uchun to'g'ri port
     username: nodirbekomonboyev2311@gmail.com
-    password: idlefasmppfddmos
+    password: qnzujkzculfermiq
     properties:
       mail:
         smtp:
