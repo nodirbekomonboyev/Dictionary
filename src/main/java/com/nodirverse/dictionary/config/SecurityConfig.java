@@ -2,7 +2,6 @@ package com.nodirverse.dictionary.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nodirverse.dictionary.dto.error.AppErrorDto;
-import com.nodirverse.dictionary.entity.UserRole;
 import com.nodirverse.dictionary.service.jwt.AuthenticationService;
 import com.nodirverse.dictionary.service.jwt.JwtFilter;
 import com.nodirverse.dictionary.service.jwt.JwtUtil;
@@ -38,6 +37,7 @@ public class SecurityConfig {
     private final RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper;
     private final String[] WHITE_LIST = {
+            "/api/v1/notifications/**",
             "/api/v1/auth/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
